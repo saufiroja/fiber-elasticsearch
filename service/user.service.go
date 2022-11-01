@@ -38,3 +38,9 @@ func (u *UserService) FindUserById(id string) (map[string]any, error) {
 func (u *UserService) UpdateUser(id string, user *entity.User) error {
 	return u.UserRepository.UpdateUser(id, user)
 }
+
+func (u *UserService) SearchUser(query string) (map[string]any, error) {
+	users, _ := u.UserRepository.SearchUser(query)
+
+	return users, nil
+}

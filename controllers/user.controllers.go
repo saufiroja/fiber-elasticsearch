@@ -107,3 +107,19 @@ func (u *UserControllers) UpdateUser(ctx *fiber.Ctx) error {
 		"message": "User Updated",
 	})
 }
+
+func (u *UserControllers) SearchUser(ctx *fiber.Ctx) error {
+	query := ctx.Query("query")
+
+	users, err := u.UserService.SearchUser(query)
+	if err != nil {
+		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
+
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"message": "Success",
+		"data":    users,
+	})
+}

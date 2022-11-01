@@ -155,3 +155,40 @@ func (u *userRepository) UpdateUser(id string, user *entity.User) error {
 
 	return <-channel
 }
+
+func (u *userRepository) SearchUser(query string) (map[string]any, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	// matching query name
+	user := fmt.Sprintf(`{
+		"query": {
+			"match": {
+				"name": "%s"
+			}
+		}
+	}`, query)
+
+	req := esapi.SearchRequest{
+		Index: []string{"users"},
+		Body:  strings.NewReader(user),
+	}
+
+	res, err := req.Do(ctx, u.Es)
+	if err != nil {
+		log.Panic(err)
+	}
+
+	if res.IsError() {
+		return nil, fmt.Errorf("error searching document")
+	}
+
+	defer res.Body.Close()
+
+	var result map[string]any
+	if err := json.NewDecoder(res.Body).Decode(&result); err != nil {
+		log.Panic(err)
+	}
+
+	return result, nil
+}

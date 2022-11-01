@@ -12,6 +12,7 @@ type UserRepository interface {
 	FindUserById(id string) (map[string]any, error)
 	UpdateUser(id string, user *entity.User) error
 	DeleteUser(id string) error
+	SearchUser(query string) (map[string]any, error)
 }
 
 type UserService interface {
@@ -20,6 +21,7 @@ type UserService interface {
 	FindUserById(id string) (map[string]any, error)
 	UpdateUser(id string, user *entity.User) error
 	DeleteUser(id string) error
+	SearchUser(query string) (map[string]any, error)
 }
 
 type UserControllers interface {
@@ -28,4 +30,5 @@ type UserControllers interface {
 	FindUserById(ctx *fiber.Ctx) error
 	UpdateUser(ctx *fiber.Ctx) error
 	DeleteUser(ctx *fiber.Ctx) error
+	SearchUser(ctx *fiber.Ctx) error
 }
