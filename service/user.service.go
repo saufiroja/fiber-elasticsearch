@@ -35,6 +35,6 @@ func (u *UserService) UpdateUser(id string, user *entity.User) error {
 	return u.UserRepository.UpdateUser(id, user)
 }
 
-func (u *UserService) SearchUser(query string) (map[string]any, error) {
-	return u.UserRepository.SearchUser(query)
+func (u *UserService) SearchUser() (map[string]any, error) {
+	return u.UserRepository.SearchUser()
 }

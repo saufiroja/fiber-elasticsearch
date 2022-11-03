@@ -109,9 +109,9 @@ func (u *UserControllers) UpdateUser(ctx *fiber.Ctx) error {
 }
 
 func (u *UserControllers) SearchUser(ctx *fiber.Ctx) error {
-	query := ctx.Query("query")
+	// query := ctx.Query("query")
 
-	users, err := u.UserService.SearchUser(query)
+	users, err := u.UserService.SearchUser()
 	if err != nil {
 		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"message": err.Error(),

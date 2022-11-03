@@ -1,6 +1,9 @@
 package entity
 
 type User struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
+	FirstName string   `json:"first_name"`
+	LastName  string   `json:"last_name"`
+	Age       int      `json:"age"`
+	Address   []string `json:"address"`
+	Hobbies   []string `json:"hobbies"`
 }
