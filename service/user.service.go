@@ -20,9 +20,7 @@ func (u *UserService) CreateUser(user *entity.User) (entity.User, error) {
 }
 
 func (u *UserService) FindAllUser() (map[string]any, error) {
-	users, _ := u.UserRepository.FindAllUser()
-
-	return users, nil
+	return u.UserRepository.FindAllUser()
 }
 
 func (u *UserService) DeleteUser(id string) error {
@@ -30,9 +28,7 @@ func (u *UserService) DeleteUser(id string) error {
 }
 
 func (u *UserService) FindUserById(id string) (map[string]any, error) {
-	user, _ := u.UserRepository.FindUserById(id)
-
-	return user, nil
+	return u.UserRepository.FindUserById(id)
 }
 
 func (u *UserService) UpdateUser(id string, user *entity.User) error {
@@ -40,7 +36,5 @@ func (u *UserService) UpdateUser(id string, user *entity.User) error {
 }
 
 func (u *UserService) SearchUser(query string) (map[string]any, error) {
-	users, _ := u.UserRepository.SearchUser(query)
-
-	return users, nil
+	return u.UserRepository.SearchUser(query)
 }
