@@ -160,27 +160,17 @@ func (u *userRepository) SearchUser() (map[string]any, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	// search first name or last name
-	user := `
-	{
+	// multi match query
+	user := `{
 		"query": {
-			"bool": {
-				"should": [
-					{
-						"match": {
-							"first_name": "hallo"
-						}
-					},
-					{
-						"match": {
-							"last_name": "world"
-						}
-					}
+			"multi_match": {
+				"query": "basket",
+				"fields": [
+					"hobbies"
 				]
 			}
 		}
-	}
-	`
+	}`
 
 	req := esapi.SearchRequest{
 		Index: []string{"users"},
