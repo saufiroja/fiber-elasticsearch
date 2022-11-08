@@ -20,6 +20,7 @@ func RouterUser(fiber *fiber.App, conf database.Config) {
 	fiber.Get("/user", userController.FindAllUser)
 	fiber.Get("/user/:id", userController.FindUserById)
 	fiber.Get("/user/search/:query", userController.SearchUser)
+	fiber.Get("/user/aggregation/:query", userController.AggregationUser)
 	fiber.Put("/user/:id", userController.UpdateUser)
 	fiber.Delete("/user/:id", userController.DeleteUser)
 }

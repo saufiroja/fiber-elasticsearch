@@ -121,3 +121,17 @@ func (u *UserControllers) SearchUser(ctx *fiber.Ctx) error {
 		"data":    users,
 	})
 }
+
+func (u *UserControllers) AggregationUser(ctx *fiber.Ctx) error {
+	users, err := u.UserService.AggregationUser()
+	if err != nil {
+		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
+
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"message": "Success",
+		"data":    users,
+	})
+}

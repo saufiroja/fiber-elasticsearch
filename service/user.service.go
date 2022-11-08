@@ -38,3 +38,7 @@ func (u *UserService) UpdateUser(id string, user *entity.User) error {
 func (u *UserService) SearchUser() (map[string]any, error) {
 	return u.UserRepository.SearchUser()
 }
+
+func (u *UserService) AggregationUser() (map[string]any, error) {
+	return u.UserRepository.AggregationUser()
+}
